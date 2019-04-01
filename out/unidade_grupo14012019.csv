@@ -1,0 +1,59 @@
+ID,nome,grupo,dt_documento,sigla
+1,Presídio Alfredo Tranjan - SEAPAT  ,CV,14/01/2019,SEAPAT
+2,Penitenciária Dr. Serrano Neves - SEAPSN ,CV,14/01/2019,SEAPSN
+3,Penitenciária Industrial Esmeraldino Bandeira - SEAPEB ,TC,14/01/2019,SEAPEB
+4,Presídio Elizabeth Sá Rego - SEAPSR,CV,14/01/2019,SEAPSR
+5,Presídio Milton Dias Moreira -SEAPMM,NEUTRO,14/01/2019,SEAPMM
+6,Presídio Pedrolino Werling de Oliveira - SEAPPO ,NÍVEL SUPERIOR,14/01/2019,SEAPPO
+6,Presídio Pedrolino Werling de Oliveira - SEAPPO ,FEDERAL,14/01/2019,SEAPPO
+7,Presídio Romeiro Neto - SEAPRN,NEUTRO,14/01/2019,SEAPRN
+8,Presídio Hélio Gomes-SEAPHG,NEUTRO,14/01/2019,SEAPHG
+9,Cadeia Pública Pedro Melo da Silva - SEAPPM,CV,14/01/2019,SEAPPM
+10,Presídio José Frederico Marques - SEAPFM,ING. MAS,14/01/2019,SEAPFM
+10,Presídio José Frederico Marques - SEAPFM,FEM,14/01/2019,SEAPFM
+10,Presídio José Frederico Marques - SEAPFM,IDOSO,14/01/2019,SEAPFM
+10,Presídio José Frederico Marques - SEAPFM,CADEI,14/01/2019,SEAPFM
+11,Presídio João Carlos da Silva - SEAPJCS,CV,14/01/2019,SEAPJCS
+12,Cadeia Pública Paulo Roberto Rocha - SEAPPR,CV,14/01/2019,SEAPPR
+13,Cadeia Pública Contrin Neto - SEAPCN,NEUTRO,14/01/2019,SEAPCN
+14,Cadeia Pública Franz de Castro Holzwarth  – SEAPFC,TC,14/01/2019,SEAPFC
+14,Cadeia Pública Franz de Castro Holzwarth  – SEAPFC,ING. MAS,14/01/2019,SEAPFC
+14,Cadeia Pública Franz de Castro Holzwarth  – SEAPFC,FEM,14/01/2019,SEAPFC
+15,Cadeia Pública Jorge Santana – SEAPJS,CV,14/01/2019,SEAPJS
+16,Cadeia Pública Juíza de Direito Patrícia Acioli - SEAPJP,NEUTRO,14/01/2019,SEAPJP
+17,Presídio ISAP Tiago Teles de Castro Domingues - SEAPTD,NEUTRO PRIMÁRIOS,14/01/2019,ISAP
+18,Cadeia Pública Constantino Cokotós - SEAPCK,POL. CIVIL,14/01/2019,SEAPCK
+18,Cadeia Pública Constantino Cokotós - SEAPCK,ISAP ATIVA,14/01/2019,SEAPCK
+19,Cadeia Pública Inspetor José Antonio da Costa Barros -SEAPJB,CV,14/01/2019,SEAPJB
+20,Presídio Ary Franco - SEAPAF ,CV,14/01/2019,SEAPAF
+20,Presídio Ary Franco - SEAPAF ,FEDERAIS,14/01/2019,SEAPAF
+21,Colônia Ag.Marco Aurélio Vergas Tavares de Mattos - SEAPAM ,TC,14/01/2019,SEAPAM
+21,Colônia Ag.Marco Aurélio Vergas Tavares de Mattos - SEAPAM ,NEUTRO,14/01/2019,SEAPAM
+21,Colônia Ag.Marco Aurélio Vergas Tavares de Mattos - SEAPAM ,VPL TEM,14/01/2019,SEAPAM
+22,Instituto Penal Cândido Mendes SEAPCM,TC,14/01/2019,SEAPCM
+22,Instituto Penal Cândido Mendes SEAPCM,NEUTRO,14/01/2019,SEAPCM
+23,Instituto Penal Edgard Costa - SEAPEC ,CV,14/01/2019,SEAPEC
+24,Instituto Penal Ismael Pereira Sirieiro - SEAPIS,ADA,14/01/2019,SEAPIS
+25,Instituto Penal Plácido Sá Carvalho - SEAPPC,NEUTRO,14/01/2019,SEAPPC
+25,Instituto Penal Plácido Sá Carvalho - SEAPPC,EX POLICIAL,14/01/2019,SEAPPC
+26,Instituto Penal Cel. PM Francisco Spargoli Rocha - SEAPFS,CV,14/01/2019,SEAPFS
+26,Instituto Penal Cel. PM Francisco Spargoli Rocha - SEAPFS,TEM,14/01/2019,SEAPFS
+27,Instituto Penal Benjamin de Moraes Filho - SEAPBM,TC,14/01/2019,SEAPBM
+28,Instituto Penal Vicente Piragibe - SEAPVP ,CV,14/01/2019,SEAPVP
+29,Penitenciária Muniz Sodré - SEAPMS,CV,14/01/2019,SEAPMS
+30,Presídio Evaristo de Moraes - SEAPEM ,NEUTRO,14/01/2019,SEAPEM
+31,Presídio Diomedes Vinhosa Muniz - SEAPVM,NEUTRO,14/01/2019,SEAPVM
+32,Presídio Dalton Crespo de Castro - SEAPDC,ADA,14/01/2019,SEAPDC
+33,Presídio Carlos Tinoco da Fonseca - SEAPCF ,TC,14/01/2019,SEAPCF
+33,Presídio Carlos Tinoco da Fonseca - SEAPCF ,ING. FEDERAL,14/01/2019,SEAPCF
+33,Presídio Carlos Tinoco da Fonseca - SEAPCF ,PA,14/01/2019,SEAPCF
+34,Penitenciária Laércio da Costa Pelegrino - SEAPLP ,GERAL,14/01/2019,SEAPLP
+35,Presídio Gabriel Ferreira Castilho - SEAPGC ,CV,14/01/2019,SEAPGC
+36,Presídio Jonas Lopes de Carvalho - SEAPJL  ,TC,14/01/2019,SEAPJL
+37,Penitenciária  Inspetor Luis Fernandes Bandeira Duarte - SEAPBD,NEUTRO,14/01/2019,SEAPBD
+38,Presídio Lemos de Brito - SEAPLB ,ADA,14/01/2019,SEAPLB
+39,Penitenciária Bandeira Stampa - SEAPBS,EX POLICIAL,14/01/2019,SEAPBS
+39,Penitenciária Bandeira Stampa - SEAPBS,MILÍCIA,14/01/2019,SEAPBS
+44,Presídio Nelson Hungria - SEAPNH,NÍVEL SUPERIOR,14/01/2019,SEAPNH
+44,Presídio Nelson Hungria - SEAPNH,PRISÃO ESPECIAL,14/01/2019,SEAPNH
+46,Casa do Albergado Crispim Ventino - SEAPAC -MASCULINO,PA,14/01/2019,SEAPAC

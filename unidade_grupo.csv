@@ -1,0 +1,59 @@
+ID,nome,grupo,dt_documento
+1,Presídio Alfredo Tranjan - SEAPAT  ,CV,04/02/2019
+2,Penitenciária Dr. Serrano Neves - SEAPSN ,CV,04/02/2019
+3,Penitenciária Industrial Esmeraldino Bandeira - SEAPEB ,TC,04/02/2019
+4,Presídio Elizabeth Sá Rego - SEAPSR,CV,04/02/2019
+5,Presídio Milton Dias Moreira -SEAPMM,NEUTRO,04/02/2019
+6,Presídio Pedrolino Werling de Oliveira - SEAPPO ,NÍVEL SUPERIOR,04/02/2019
+6,Presídio Pedrolino Werling de Oliveira - SEAPPO ,FEDERAL,04/02/2019
+7,Presídio Romeiro Neto - SEAPRN,NEUTRO,04/02/2019
+8,Presídio Hélio Gomes-SEAPHG,NEUTRO,04/02/2019
+9,Cadeia Pública Pedro Melo da Silva - SEAPPM,CV,04/02/2019
+10,Presídio José Frederico Marques - SEAPFM,ING. MAS,04/02/2019
+10,Presídio José Frederico Marques - SEAPFM,FEM,04/02/2019
+10,Presídio José Frederico Marques - SEAPFM,IDOSO,04/02/2019
+10,Presídio José Frederico Marques - SEAPFM,CADEI,04/02/2019
+11,Presídio João Carlos da Silva - SEAPJCS,CV,04/02/2019
+12,Cadeia Pública Paulo Roberto Rocha - SEAPPR,CV,04/02/2019
+13,Cadeia Pública Contrin Neto - SEAPCN,NEUTRO,04/02/2019
+14,Cadeia Pública Franz de Castro Holzwarth  – SEAPFC,TC,04/02/2019
+14,Cadeia Pública Franz de Castro Holzwarth  – SEAPFC,ING. MAS,04/02/2019
+14,Cadeia Pública Franz de Castro Holzwarth  – SEAPFC,FEM,04/02/2019
+15,Cadeia Pública Jorge Santana – SEAPJS,CV,04/02/2019
+16,Cadeia Pública Juíza de Direito Patrícia Acioli - SEAPJP,NEUTRO,04/02/2019
+17,Presídio ISAP Tiago Teles de Castro Domingues - SEAPTD,NEUTRO PRIMÁRIOS,04/02/2019
+18,Cadeia Pública Constantino Cokotós - SEAPCK,POL. CIVIL,04/02/2019
+18,Cadeia Pública Constantino Cokotós - SEAPCK,ISAP ATIVA,04/02/2019
+19,Cadeia Pública Inspetor José Antonio da Costa Barros -SEAPJB,CV,04/02/2019
+20,Presídio Ary Franco - SEAPAF ,CV,04/02/2019
+20,Presídio Ary Franco - SEAPAF ,FEDERAIS,04/02/2019
+21,Colônia Ag.Marco Aurélio Vergas Tavares de Mattos - SEAPAM ,TC,04/02/2019
+21,Colônia Ag.Marco Aurélio Vergas Tavares de Mattos - SEAPAM ,NEUTRO,04/02/2019
+21,Colônia Ag.Marco Aurélio Vergas Tavares de Mattos - SEAPAM ,VPL TEM,04/02/2019
+22,Instituto Penal Cândido Mendes SEAPCM,TC,04/02/2019
+22,Instituto Penal Cândido Mendes SEAPCM,NEUTRO,04/02/2019
+23,Instituto Penal Edgard Costa - SEAPEC ,CV,04/02/2019
+24,Instituto Penal Ismael Pereira Sirieiro - SEAPIS,ADA,04/02/2019
+25,Instituto Penal Plácido Sá Carvalho - SEAPPC,NEUTRO,04/02/2019
+25,Instituto Penal Plácido Sá Carvalho - SEAPPC,EX POLICIAL,04/02/2019
+26,Instituto Penal Cel. PM Francisco Spargoli Rocha - SEAPFS,CV,04/02/2019
+26,Instituto Penal Cel. PM Francisco Spargoli Rocha - SEAPFS,TEM,04/02/2019
+27,Instituto Penal Benjamin de Moraes Filho - SEAPBM,TC,04/02/2019
+28,Instituto Penal Vicente Piragibe - SEAPVP ,CV,04/02/2019
+29,Penitenciária Muniz Sodré - SEAPMS,CV,04/02/2019
+30,Presídio Evaristo de Moraes - SEAPEM ,NEUTRO,04/02/2019
+31,Presídio Diomedes Vinhosa Muniz - SEAPVM,NEUTRO,04/02/2019
+32,Presídio Dalton Crespo de Castro - SEAPDC,ADA,04/02/2019
+33,Presídio Carlos Tinoco da Fonseca - SEAPCF ,TC,04/02/2019
+33,Presídio Carlos Tinoco da Fonseca - SEAPCF ,ING. FEDERAL,04/02/2019
+33,Presídio Carlos Tinoco da Fonseca - SEAPCF ,PA,04/02/2019
+34,Penitenciária Laércio da Costa Pelegrino - SEAPLP ,GERAL,04/02/2019
+35,Presídio Gabriel Ferreira Castilho - SEAPGC ,CV,04/02/2019
+36,Presídio Jonas Lopes de Carvalho - SEAPJL  ,TC,04/02/2019
+37,Penitenciária  Inspetor Luis Fernandes Bandeira Duarte - SEAPBD,NEUTRO,04/02/2019
+38,Presídio Lemos de Brito - SEAPLB ,ADA,04/02/2019
+39,Penitenciária Bandeira Stampa - SEAPBS,EX POLICIAL,04/02/2019
+39,Penitenciária Bandeira Stampa - SEAPBS,MILÍCIA,04/02/2019
+44,Presídio Nelson Hungria - SEAPNH,NÍVEL SUPERIOR,04/02/2019
+44,Presídio Nelson Hungria - SEAPNH,PRISÃO ESPECIAL,04/02/2019
+46,Casa do Albergado Crispim Ventino - SEAPAC -MASCULINO,PA,04/02/2019
