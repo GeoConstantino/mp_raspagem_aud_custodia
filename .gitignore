@@ -1,4 +1,3 @@
-
 # etl_efetivo_carcerario
 */*.json
 */*.csv
@@ -6,3 +5,8 @@
 __pycache__
 */*.xlsx
 .git
+*.csv
+*.xlsx
+*.xls
+proc_old.py
+test.py
