@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import re
 import sys
+import ipdb
 
 # FLOW recebe new ou old
 
@@ -25,9 +26,9 @@ def get_list_files_in():
     return (files)
 
 
-def get_data_doc_new(df):
+def get_data_doc(file):
 
-    df_data = pd.read_excel(df, sheet_name="Efetivo Simplificado", header=None)
+    df_data = pd.read_excel(file, sheet_name=1, header=None)
     first_line = df_data.iloc[0][0]
     regex = r"(\d{2}/\d{2}/\d{4})"
     dt_documento = re.search(regex, first_line)
@@ -61,7 +62,7 @@ def salva_csv(df,data_documento,filename):
     print('Arquivo {} salvo com sucesso.'.format(filename))
 
 
-def unidade_prisional_processada(df_ec, data_documento):
+def unidade_prisional_processada_new(df_ec, data_documento):
 
     df_ec.drop(columns=['Erro1','Erro2','Erro3', 'regime'], inplace=True)
 
@@ -78,7 +79,7 @@ def unidade_prisional_processada(df_ec, data_documento):
     return (df_ec)
 
 
-def unidade_regime_processada(df, data_documento):
+def unidade_regime_processada_new(df, data_documento):
 
     df_p = df[['ID','nome', 'regime']].copy()
 
@@ -184,7 +185,7 @@ def busca_grupo(grupo, linha):
                 return cel
 
 
-def unidade_faccoes_processada(file, data_documento):
+def unidade_faccoes_processada_new(file, data_documento):
 
     df_fac = pd.read_excel(file, sheet_name=2, header=2)
 
@@ -229,17 +230,96 @@ def quebra_nome(df):
     for i in ser:
             
         regex = '([A-Z]{3,7})(\s|$)'
-
         z = re.search(regex,i)[0]
-
-
         sigla.append(z.strip())
-    
-   
+
     df['sigla'] = sigla
 
     return df
     
+
+def put_zeros(df):
+
+    df['cap_original'].fillna(0, inplace=True)
+    df['vagas_inosp'].fillna(0, inplace=True)
+    df['cap_atual'].fillna(0, inplace=True)
+    df['efetivo_nom'].fillna(0, inplace=True)
+    df['baixados'].fillna(0, inplace=True)
+    df['acautelado'].fillna(0, inplace=True)
+    df['efetivo_real'].fillna(0, inplace=True)
+    df['excesso'].fillna(0, inplace=True)
+    df['vagas'].fillna(0, inplace=True)
+
+    return df
+
+def unidade_faccoes_processada_old(file, data_documento):
+
+    plan_num = [0,1,2]
+
+    cols = ['ID', 'nome', 'localidade', 'regime', 'cap_original',
+            'vagas_inosp', 'cap_atual', 'efetivo_nom', 'baixados', 'acautelado',
+            'efetivo_real', 'excesso', 'vagas']
+
+    df_ec = pd.DataFrame()
+
+    for i in plan_num:
+
+        if i == 2:
+            
+            df = pd.read_excel(file, sheet_name=i, header=4)
+        
+        else:
+            
+            df = pd.read_excel(file, sheet_name=i)
+
+        #ipdb.set_trace()
+        if i == 1:
+
+            if set(['Unnamed: 4']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 4'], inplace=True)
+
+            if set(['Unnamed: 14']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 14'], inplace=True)
+
+        
+        df.columns = cols
+
+        df = df.iloc[3:]
+        
+        df = put_zeros(df)
+
+        df.dropna(subset=["regime"], inplace=True)
+
+        df = df[df['cap_original'] != 0]
+
+        df['nome'].fillna(method='ffill', inplace=True)
+
+        df['ID'].fillna(method='ffill', inplace=True)
+
+        df['localidade'] = df['localidade'].str.strip()
+
+        df['localidade'].fillna(method='ffill', inplace=True)
+
+        df = df.infer_objects()
+
+        df = df.groupby(["ID","nome","localidade"], as_index=False).sum()
+
+        
+        df_ec = df_ec.append(df, sort=False)
+
+    df_ec['dt_documento'] = data_documento
+    
+    df_ec = quebra_nome(df_ec)
+
+    salva_csv(df_ec,data_documento,'unidade_prisional')
+
+    return df_ec
+    
+    
+
+
+
+
 
 ########### MAIN ###########
 if __name__ == '__main__':
@@ -249,6 +329,8 @@ if __name__ == '__main__':
     for file in get_list_files_in():
         
         print (file)
+
+        data_documento = get_data_doc(file)
         
         if FLOW == 'new':
             
@@ -256,16 +338,23 @@ if __name__ == '__main__':
             
             df = format_cols_name_base(df)
 
-            data_documento = get_data_doc_new(file)
+            unidade_prisional_processada_new(df.copy(),data_documento)
 
-            unidade_prisional_processada(df.copy(),data_documento)
+            unidade_regime_processada_new(df.copy(),data_documento)
 
-            unidade_regime_processada(df.copy(),data_documento)
-
-            unidade_faccoes_processada(file,data_documento)
+            unidade_faccoes_processada_new(file,data_documento)
 
 
         elif FLOW == 'old':
+            
+            unidade_faccoes_processada_old(file, data_documento)
+            
+            #unidade_regime_processada_old(file, data_documento)
+
+
+
+
+
             pass;
 
         
