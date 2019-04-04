@@ -222,16 +222,23 @@ def unidade_faccoes_processada_new(file, data_documento):
 
 
 def quebra_nome(df):
-
+    
     ser = df['nome']
 
     sigla = []
 
     for i in ser:
+
+        regex = "([A-Z]{3,7})(\s|$)"
             
-        regex = '([A-Z]{3,7})(\s|$)'
-        z = re.search(regex,i)[0]
+        try:
+            z = re.search(regex,i)[0]
+        except:
+            if i == "Instituto Penal Oscar Stevenson":
+                z = 'SEAPOS'
+
         sigla.append(z.strip())
+        #print(z)
 
     df['sigla'] = sigla
 
@@ -252,7 +259,7 @@ def put_zeros(df):
 
     return df
 
-def unidade_faccoes_processada_old(file, data_documento):
+def unidade_prisional_processada_old(file, data_documento):
 
     plan_num = [0,1,2]
 
@@ -272,7 +279,7 @@ def unidade_faccoes_processada_old(file, data_documento):
             
             df = pd.read_excel(file, sheet_name=i)
 
-        #ipdb.set_trace()
+      
         if i == 1:
 
             if set(['Unnamed: 4']).issubset(df.columns):
@@ -315,9 +322,104 @@ def unidade_faccoes_processada_old(file, data_documento):
 
     return df_ec
     
+
+def unidade_regime_processada_old(file, data_documento):
+
+    df_all = pd.DataFrame()
+
+    plan_num = [4,5,6]
+
+    cols = ['ID', 'nome', 'localidade', 'regime', 'cap_atual',
+        'efetivo_real', 'excesso', 'perc_excesso']
+
+    df_un = pd.DataFrame()
+
+    for i in plan_num:
+
+        df = pd.read_excel(file, sheet_name=i, header=0)
+
+        if i > 4:
+
+            if set(['Unnamed: 8']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 8'], inplace=True)
+
+            if set(['Unnamed: 9']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 9'], inplace=True)
+
+            if set(['Unnamed: 10']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 10'], inplace=True)
+
+            if set(['Unnamed: 11']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 11'], inplace=True)
+
+            if set(['Unnamed: 12']).issubset(df.columns):
+                df.drop(columns=['Unnamed: 12'], inplace=True)
+                
+        df.columns = cols
+
+        df = df.iloc[3:]
+            
+        df_e = df[['ID','nome','regime']].copy()
+        
+        df_all = df_all.append(df_e, sort=False)
+
+    df_all.dropna(subset=['regime'], inplace=True)
     
+    df_all['ID'].fillna(method='ffill', inplace=True)
+    
+    df_all['nome'].fillna(method='ffill', inplace=True)
+
+    df_all['regime'] = df_all['regime'].str.strip()
+    
+    df_all['nome'] = df_all['nome'].str.strip()
+            
+
+    list = []
+
+    for i, row in df_all.iterrows():
+        
+        if row['regime'] in ['Fechado','Fem.-Fechado']:
+            line = pd.Series([row[0],row[1],'Fechado'], index=['ID','nome', 'regime'])
+        
+        elif row['regime'] in ['Provisório','Fem.- Provisório']:
+            line = pd.Series([row[0],row[1],'Provisório'], index=['ID','nome', 'regime'])
+        
+        elif row['regime'] in ['Fem.-Semiaberto','Semiaberto']:
+            line = pd.Series([row[0],row[1],'Semiaberto'], index=['ID','nome', 'regime'])
+        
+        elif row['regime'] in ['Fem.Aberto','Fem.-Aberto','Aberto']:
+            line = pd.Series([row[0],row[1],'Aberto'], index=['ID','nome', 'regime'])
+        
+        elif row['regime'] in ['Fem.- Provisório Comum']:
+            line = pd.Series([row[0],row[1],'Provisório Comum'], index=['ID','nome', 'regime'])
+            
+        elif row['regime'] in ['Fem -  Provisório Federal']:
+            line = pd.Series([row[0],row[1],'Provisório Federal'], index=['ID','nome', 'regime'])
+            
+        elif row['regime'] in ['Outros']:
+            line = pd.Series([row[0],row[1],'Outros'], index=['ID','nome', 'regime'])
+        
+        
+        
+        if line.isnull().all() ==  False:
+            list.append(line)
+    
+    df_regime = pd.DataFrame(list)
+
+    df_regime.drop_duplicates()
+
+    df_regime['dt_documento'] = data_documento
+
+   
+
+    df_regime = quebra_nome(df_regime)
+
+    salva_csv(df_regime,data_documento,'unidade_regime')
+
+    return df_regime
 
 
+def unidade_faccoes_processada_old():
 
 
 
@@ -347,10 +449,11 @@ if __name__ == '__main__':
 
         elif FLOW == 'old':
             
-            unidade_faccoes_processada_old(file, data_documento)
+            unidade_prisional_processada_old(file, data_documento)
             
-            #unidade_regime_processada_old(file, data_documento)
+            unidade_regime_processada_old(file, data_documento)
 
+            unidade_faccoes_processada_old(file, data_documento)
 
 
 
