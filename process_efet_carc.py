@@ -1,8 +1,15 @@
+""" 
+Nota: realizar a instalação da biblioteca PANDAS:
+
+Executar no terminal o seguinte comando:
+
+pip install pandas
+"""
 import os
 import pandas as pd
 import re
 import sys
-import ipdb
+#import ipdb
 
 # FLOW recebe new ou old
 
@@ -149,44 +156,49 @@ def format_cols_name_fac(df):
 
 def busca_grupo(grupo, linha):
 
-    if grupo.lower() in linha['grupo'].lower():
-        
-        if (grupo.lower() != 'neutro') and (grupo.lower() != 'neutro primários') \
-        and (grupo.lower() != 'federal') and (grupo.lower() != 'ing. federal') \
-        and (grupo.lower() != 'vlp tem') and (grupo.lower() != 'tem'):
-
-            cel = pd.Series([linha[0],linha[1], grupo], index=['ID','nome','grupo'])
-            return cel
-
-        else:
+    try:    
+        if grupo.lower() in linha['grupo'].lower():
             
-            if "NEUTRO PRIMÁRIOS".lower() in linha['grupo'].lower():
-                cel = pd.Series([linha[0],linha[1], "NEUTRO PRIMÁRIOS"], index=['ID','nome','grupo'])
+            if (grupo.lower() != 'neutro') and (grupo.lower() != 'neutro primários') \
+            and (grupo.lower() != 'federal') and (grupo.lower() != 'ing. federal') \
+            and (grupo.lower() != 'vlp tem') and (grupo.lower() != 'tem'):
+
+                cel = pd.Series([linha[0],linha[1], grupo], index=['ID','nome','grupo'])
                 return cel
 
-            elif "NEUTRO".lower() in linha['grupo'].lower():
-                cel = pd.Series([linha[0],linha[1], "NEUTRO"], index=['ID','nome','grupo'])
-                return cel
+            else:
+                
+                if "NEUTRO PRIMÁRIOS".lower() in linha['grupo'].lower():
+                    cel = pd.Series([linha[0],linha[1], "NEUTRO PRIMÁRIOS"], index=['ID','nome','grupo'])
+                    return cel
 
-            elif "ING. FEDERAL".lower() in linha['grupo'].lower():
-                cel = pd.Series([linha[0],linha[1], "ING. FEDERAL"], index=['ID','nome','grupo'])
-                return cel
+                elif "NEUTRO".lower() in linha['grupo'].lower():
+                    cel = pd.Series([linha[0],linha[1], "NEUTRO"], index=['ID','nome','grupo'])
+                    return cel
 
-            elif "FEDERAL".lower() in linha['grupo'].lower():
-                cel = pd.Series([linha[0],linha[1], "FEDERAL"], index=['ID','nome','grupo'])
-                return cel
+                elif "ING. FEDERAL".lower() in linha['grupo'].lower():
+                    cel = pd.Series([linha[0],linha[1], "ING. FEDERAL"], index=['ID','nome','grupo'])
+                    return cel
 
-            elif "VLP TEM".lower() in linha['grupo'].lower():
-                cel = pd.Series([linha[0],linha[1], "VLP TEM"], index=['ID','nome','grupo'])
-                return cel
+                elif "FEDERAL".lower() in linha['grupo'].lower():
+                    cel = pd.Series([linha[0],linha[1], "FEDERAL"], index=['ID','nome','grupo'])
+                    return cel
 
-            elif "TEM".lower() in linha['grupo'].lower():
-                cel = pd.Series([linha[0],linha[1], "TEM"], index=['ID','nome','grupo'])
-                return cel
+                elif "VLP TEM".lower() in linha['grupo'].lower():
+                    cel = pd.Series([linha[0],linha[1], "VLP TEM"], index=['ID','nome','grupo'])
+                    return cel
+
+                elif "TEM".lower() in linha['grupo'].lower():
+                    cel = pd.Series([linha[0],linha[1], "TEM"], index=['ID','nome','grupo'])
+                    return cel
+
+    except AttributeError as error:
+        
+        pass
 
 
 def unidade_faccoes_processada_new(file, data_documento):
-
+    
     df_fac = pd.read_excel(file, sheet_name=2, header=2)
 
     df_fac = format_cols_name_fac(df_fac)
@@ -410,8 +422,6 @@ def unidade_regime_processada_old(file, data_documento):
 
     df_regime['dt_documento'] = data_documento
 
-   
-
     df_regime = quebra_nome(df_regime)
 
     salva_csv(df_regime,data_documento,'unidade_regime')
@@ -419,9 +429,70 @@ def unidade_regime_processada_old(file, data_documento):
     return df_regime
 
 
-def unidade_faccoes_processada_old():
+def prepara_df(df):
+    dfa = pd.DataFrame()
+    dfa['ID'] = df.iloc[:,0]
+    dfa[['nome','grupo']] = df[['Nome ','Grupo']].iloc[2:].copy()
+    dfa = dfa.iloc[2:]
+    dfa = dfa.dropna(subset=['nome'])
+    dfa = dfa.dropna(subset=['ID'])
+    
+    return dfa
+
+def unidade_faccoes_processada_old(file, data_documento):
+
+    plan_num = [7,8,9]
+
+    dfa = pd.DataFrame()
+
+    for i in plan_num:
+
+        dfb = pd.DataFrame()
+
+        dff = pd.read_excel(file, sheet_name=i, header=1)
 
 
+        dfb = prepara_df(dff)
+        dfa = dfa.append(dfb)
+
+        
+    lista_grupo = ['TC','Ex Policial','Milícia','CV','Geral',
+    'Neutro','+ 60 anos','deficiente','Pensão','Nível Superior',
+    'Ingresso Geral','Servidor Seg.Pública','ISAP','ADA','Idoso','Outro']
+    
+    dfa['grupo'] = dfa['grupo'].str.strip()
+
+
+    flista = []
+
+    dfa.fillna("OUTROS", inplace=True)
+
+    dfa['grupo'] = dfa['grupo'].replace('/','OUTROS')
+
+    for i , linha in dfa.iterrows():
+        
+        for grupo in lista_grupo:
+            
+            if linha[2] is not None:
+                res = busca_grupo(grupo, linha)
+                if res is not None:
+
+                    flista.append(res)
+            
+    df_grupo = pd.DataFrame(flista)
+
+    df_grupo['dt_documento'] = data_documento
+
+    df_grupo.drop_duplicates(inplace=True)
+
+    df_grupo = quebra_nome(df_grupo)
+
+    salva_csv(df_grupo,data_documento,'unidade_grupo')
+
+    return (df_grupo)
+
+
+        
 
 ########### MAIN ###########
 if __name__ == '__main__':
