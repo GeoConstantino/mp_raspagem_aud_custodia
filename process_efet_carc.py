@@ -1,10 +1,3 @@
-""" 
-Nota: realizar a instalação da biblioteca PANDAS:
-
-Executar no terminal o seguinte comando:
-
-pip install pandas
-"""
 import os
 import pandas as pd
 import re
